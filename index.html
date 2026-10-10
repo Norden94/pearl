@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You — My Universe 💫</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   🎨  THEME COLORS — change these to match her vibe
+   ============================================================ */
+:root{
+  --rose:      #ff8fb1;
+  --rose-soft: #ffc2d4;
+  --gold:      #f2cf8d;
+  --lilac:     #c9a7ff;
+  --cream:     #fdf3f0;
+  --muted:     rgba(253,243,240,.72);
+  --glass:     rgba(255,143,177,.07);
+  --line:      rgba(255,143,177,.22);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Poppins',sans-serif;
+  color:var(--cream);
+  overflow-x:hidden;
+  background:#08030c;
+  cursor:default;
+}
+::selection{background:var(--rose);color:#1a0713}
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:#0d0510}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--rose),var(--lilac));border-radius:10px}
+
+/* ============================================================
+   1. ANIMATED BACKGROUND — stars + aurora + floating hearts
+   ============================================================ */
+#bg{position:fixed;inset:0;z-index:0;overflow:hidden}
+#stars,#stars2,#stars3{position:absolute;inset:0;background-repeat:repeat}
+#stars{
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+    radial-gradient(2px 2px at 60px 70px, #fff, transparent),
+    radial-gradient(1px 1px at 130px 40px, #fff, transparent),
+    radial-gradient(1px 1px at 200px 90px, #fff, transparent),
+    radial-gradient(2px 2px at 260px 20px, #fff, transparent),
+    radial-gradient(1px 1px at 320px 60px, #fff, transparent);
+  background-size:400px 200px;
+  animation:starDrift 200s linear infinite;
+  opacity:.6;
+}
+#stars2{
+  background-image:
+    radial-gradient(1px 1px at 50px 50px, #ffd6e6, transparent),
+    radial-gradient(1px 1px at 150px 120px, #ffd6e6, transparent),
+    radial-gradient(2px 2px at 250px 80px, #ffe9f2, transparent),
+    radial-gradient(1px 1px at 350px 30px, #ffd6e6, transparent);
+  background-size:500px 300px;
+  animation:starDrift 120s linear infinite reverse;
+  opacity:.4;
+}
+#stars3{
+  background-image:
+    radial-gradient(1px 1px at 80px 150px, #c9a7ff, transparent),
+    radial-gradient(1px 1px at 180px 60px, #c9a7ff, transparent),
+    radial-gradient(2px 2px at 300px 180px, #e0c9ff, transparent);
+  background-size:600px 400px;
+  animation:starDrift 80s linear infinite;
+  opacity:.35;
+}
+@keyframes starDrift{
+  from{background-position:0 0}
+  to{background-position:600px 600px}
+}
+.aurora{
+  position:absolute;inset:-30%;
+  background:
+    radial-gradient(circle at 25% 25%, rgba(255,143,177,.18), transparent 40%),
+    radial-gradient(circle at 75% 75%, rgba(201,167,255,.15), transparent 40%),
+    radial-gradient(circle at 60% 20%, rgba(242,207,141,.1), transparent 45%);
+  filter:blur(70px);
+  animation:auroraMove 20s ease-in-out infinite alternate;
+}
+@keyframes auroraMove{
+  0%  {transform:translate(0,0) scale(1)}
+  50% {transform:translate(-4%,-3%) scale(1.1)}
+  100%{transform:translate(4%,3%) scale(1.05)}
+}
+
+/* floating hearts */
+#heartsBg{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.heart{
+  position:absolute;bottom:-70px;opacity:0;
+  animation:floatUp linear infinite;
+  filter:drop-shadow(0 0 10px rgba(255,143,177,.6));
+}
+@keyframes floatUp{
+  0%  {transform:translateY(0) rotate(0deg) scale(.6);opacity:0}
+  10% {opacity:.9}
+  90% {opacity:.5}
+  100%{transform:translateY(-118vh) rotate(400deg) scale(1.2);opacity:0}
+}
+
+/* mouse-follow glow */
+#cursorGlow{
+  position:fixed;width:420px;height:420px;border-radius:50%;
+  background:radial-gradient(circle, rgba(255,143,177,.14), transparent 70%);
+  pointer-events:none;z-index:1;
+  transform:translate(-50%,-50%);
+  transition:transform .15s ease-out;
+  filter:blur(20px);
+}
+
+/* ============================================================
+   2. LAYOUT HELPERS
+   ============================================================ */
+section{position:relative;z-index:2;padding:110px 22px}
+.wrap{max-width:1120px;margin:0 auto}
+.center{text-align:center}
+.script{font-family:'Great Vibes',cursive;font-weight:400;line-height:1.1}
+.section-title{
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(2.6rem,7vw,4.6rem);
+  background:linear-gradient(100deg,var(--rose-soft),var(--gold),var(--lilac));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  margin-bottom:14px;
+  background-size:200% auto;
+  animation:shimmer 6s linear infinite;
+}
+@keyframes shimmer{to{background-position:200% center}}
+.section-sub{
+  color:var(--muted);font-weight:300;font-size:.95rem;
+  letter-spacing:.06em;margin-bottom:58px;
+}
+
+/* ============================================================
+   3. HERO
+   ============================================================ */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  padding:80px 22px;position:relative;
+}
+.eyebrow{
+  font-size:.7rem;letter-spacing:.5em;text-transform:uppercase;
+  color:var(--rose);margin-bottom:30px;font-weight:400;
+  animation:fadeUp 1s .2s both;
+}
+.hero h1{
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(3.6rem,15vw,9.5rem);
+  line-height:1;
+  background:linear-gradient(110deg,#fff 5%,var(--rose-soft) 35%,var(--gold) 60%,var(--lilac) 90%);
+  background-size:250% auto;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:shimmer 8s linear infinite, fadeUp 1.2s .4s both;
+  filter:drop-shadow(0 0 30px rgba(255,143,177,.4));
+}
+.hero .sub{
+  max-width:560px;margin:30px auto 44px;
+  color:var(--muted);font-weight:300;line-height:1.95;font-size:1.02rem;
+  animation:fadeUp 1.2s .7s both;
+}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:16px 44px;border-radius:100px;
+  border:1px solid rgba(255,143,177,.5);
+  background:rgba(255,143,177,.08);
+  color:var(--cream);text-decoration:none;
+  font-size:.8rem;letter-spacing:.22em;text-transform:uppercase;
+  backdrop-filter:blur(8px);
+  transition:.45s cubic-bezier(.2,.8,.2,1);
+  animation:fadeUp 1.2s 1s both;
+  position:relative;overflow:hidden;
+}
+.btn::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.25),transparent);
+  transform:translateX(-100%);
+  transition:.6s;
+}
+.btn:hover::before{transform:translateX(100%)}
+.btn:hover{
+  background:rgba(255,143,177,.22);
+  box-shadow:0 0 45px rgba(255,143,177,.55);
+  transform:translateY(-4px);
+  border-color:rgba(255,143,177,.9);
+}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to  {opacity:1;transform:none}
+}
+.scroll-hint{
+  margin-top:64px;font-size:1.3rem;color:var(--rose);
+  animation:bob 1.9s ease-in-out infinite;
+}
+@keyframes bob{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(12px);opacity:1}}
+
+/* ============================================================
+   4. TYPEWRITER LOVE LETTER
+   ============================================================ */
+.letter{
+  max-width:760px;margin:0 auto;text-align:left;
+  padding:60px 44px;border-radius:28px;
+  border:1px solid var(--line);
+  background:linear-gradient(150deg,var(--glass),rgba(255,255,255,.015));
+  backdrop-filter:blur(14px);
+  box-shadow:0 30px 90px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.06);
+  position:relative;
+}
+.letter::before{
+  content:'❝';position:absolute;top:12px;left:26px;
+  font-family:'Great Vibes',cursive;font-size:6rem;
+  color:rgba(255,143,177,.15);line-height:1;
+}
+.letter-body{
+  font-family:'Playfair Display',serif;
+  font-style:italic;font-size:clamp(1rem,2.4vw,1.18rem);
+  line-height:2.15;color:rgba(253,243,240,.92);
+  min-height:200px;
+  white-space:pre-wrap;
+}
+.cursor{
+  display:inline-block;width:2px;height:1.1em;
+  background:var(--rose);vertical-align:-2px;
+  animation:blink 1s step-end infinite;
+}
+@keyframes blink{50%{opacity:0}}
+.signature{
+  margin-top:36px;font-family:'Great Vibes',cursive;
+  font-size:2.1rem;color:var(--rose-soft);
+  opacity:0;transition:opacity 1.2s ease .3s;
+}
+.signature.show{opacity:1}
+
+/* ============================================================
+   5. 3D CAROUSEL
+   ============================================================ */
+.carousel-stage{
+  perspective:1600px;
+  height:520px;
+  position:relative;
+  margin-top:20px;
+  user-select:none;
+}
+.carousel{
+  position:absolute;top:50%;left:50%;
+  width:240px;height:320px;
+  transform-style:preserve-3d;
+  transition:transform 1s cubic-bezier(.2,.8,.2,1);
+}
+.card3d{
+  position:absolute;inset:0;
+  border-radius:20px;overflow:hidden;
+  border:1px solid rgba(255,143,177,.35);
+  box-shadow:0 20px 60px rgba(0,0,0,.6), 0 0 30px rgba(255,143,177,.15);
+  background:linear-gradient(135deg,#3a1130,#5c1c45);
+  transition:box-shadow .5s, border-color .5s;
+  backface-visibility:hidden;
+}
+.card3d img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  pointer-events:none;
+}
+.card3d .ph-num{
+  position:absolute;inset:0;display:grid;place-items:center;
+  font-family:'Great Vibes',cursive;font-size:4rem;
+  color:rgba(255,255,255,.25);
+  z-index:0;
+}
+.card3d img{position:relative;z-index:1}
+.card3d .cap{
+  position:absolute;left:0;right:0;bottom:0;z-index:2;
+  padding:40px 14px 14px;
+  background:linear-gradient(to top,rgba(10,3,10,.95),transparent);
+  font-size:.74rem;line-height:1.5;color:#ffe7ef;font-weight:300;
+  text-align:center;
+}
+.card3d.active{
+  box-shadow:0 30px 80px rgba(0,0,0,.7), 0 0 60px rgba(255,143,177,.5);
+  border-color:rgba(255,143,177,.8);
+}
+
+.carousel-controls{
+  display:flex;justify-content:center;align-items:center;gap:26px;
+  margin-top:38px;
+}
+.c-btn{
+  width:56px;height:56px;border-radius:50%;cursor:pointer;
+  border:1px solid var(--line);
+  background:rgba(255,143,177,.08);
+  color:var(--rose-soft);font-size:1.3rem;
+  display:grid;place-items:center;
+  transition:.35s;
+  backdrop-filter:blur(8px);
+}
+.c-btn:hover{
+  background:rgba(255,143,177,.3);
+  transform:scale(1.12);
+  box-shadow:0 0 30px rgba(255,143,177,.5);
+  color:#fff;
+}
+.c-counter{
+  font-family:'Great Vibes',cursive;
+  font-size:1.6rem;color:var(--rose-soft);
+  min-width:90px;text-align:center;
+}
+
+/* ============================================================
+   6. REASONS GRID
+   ============================================================ */
+.reasons{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:18px;
+}
+.reason{
+  padding:28px 26px;border-radius:20px;
+  border:1px solid rgba(255,143,177,.16);
+  background:linear-gradient(150deg,rgba(255,143,177,.06),rgba(255,255,255,.015));
+  transition:.5s cubic-bezier(.2,.8,.2,1);
+  position:relative;overflow:hidden;
+}
+.reason::after{
+  content:'';position:absolute;top:-50%;left:-50%;
+  width:200%;height:200%;
+  background:radial-gradient(circle, rgba(255,143,177,.12), transparent 60%);
+  opacity:0;transition:.5s;
+  pointer-events:none;
+}
+.reason:hover::after{opacity:1}
+.reason:hover{
+  border-color:rgba(255,143,177,.55);
+  transform:translateY(-7px) rotate(-1deg);
+  box-shadow:0 20px 44px rgba(255,90,140,.22);
+}
+.reason .num{
+  font-family:'Great Vibes',cursive;font-size:2rem;
+  background:linear-gradient(100deg,var(--gold),var(--rose-soft));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  display:block;margin-bottom:8px;
+}
+.reason p{font-size:.88rem;line-height:1.75;color:rgba(253,243,240,.88);font-weight:300;position:relative;z-index:1}
+
+/* ============================================================
+   7. SCRATCH CARD
+   ============================================================ */
+.scratch-wrap{
+  max-width:600px;margin:0 auto;
+  position:relative;border-radius:26px;overflow:hidden;
+  border:1px solid var(--line);
+  box-shadow:0 24px 70px rgba(0,0,0,.5);
+  aspect-ratio:2/1;
+  user-select:none;
+  touch-action:none;
+}
+.scratch-reveal{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:30px;
+  background:linear-gradient(150deg,#2a0c22,#4a1636,#2a0c22);
+}
+.scratch-reveal h3{
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(1.8rem,5vw,2.8rem);
+  background:linear-gradient(100deg,var(--rose-soft),var(--gold),var(--lilac));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  margin-bottom:10px;
+}
+.scratch-reveal p{color:var(--muted);font-size:.92rem;font-weight:300;line-height:1.8;max-width:400px}
+.scratch-reveal .emoji{font-size:2.4rem;margin-bottom:12px}
+canvas#scratchCanvas{
+  position:absolute;inset:0;width:100%;height:100%;
+  cursor:crosshair;transition:opacity .8s ease;
+}
+canvas#scratchCanvas.gone{opacity:0;pointer-events:none}
+.scratch-hint{
+  text-align:center;margin-top:22px;color:var(--muted);
+  font-size:.82rem;letter-spacing:.15em;text-transform:uppercase;
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:.5}50%{opacity:1}}
+
+/* ============================================================
+   8. FINALE / QUESTION
+   ============================================================ */
+.finale{text-align:center;padding-bottom:140px}
+.finale h2{
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(2.8rem,9vw,5.5rem);
+  background:linear-gradient(100deg,#fff,var(--rose-soft),var(--gold));
+  background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  margin-bottom:22px;
+  animation:shimmer 5s linear infinite;
+}
+.finale p{color:var(--muted);font-weight:300;max-width:540px;margin:0 auto 44px;line-height:1.95}
+.q-buttons{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+.q-btn{
+  padding:17px 46px;border-radius:100px;border:none;cursor:pointer;
+  font-family:'Poppins',sans-serif;font-size:.85rem;letter-spacing:.2em;
+  text-transform:uppercase;font-weight:500;
+  transition:.4s cubic-bezier(.2,.8,.2,1);
+  position:relative;
+}
+.q-yes{
+  color:#2a0a1c;
+  background:linear-gradient(100deg,var(--rose-soft),var(--gold));
+  box-shadow:0 12px 44px rgba(255,143,177,.45);
+}
+.q-yes:hover{transform:translateY(-5px) scale(1.05);box-shadow:0 20px 60px rgba(255,143,177,.7)}
+.q-yes:active{transform:scale(.96)}
+.q-no{
+  color:var(--muted);
+  background:rgba(255,143,177,.08);
+  border:1px solid var(--line);
+  backdrop-filter:blur(8px);
+}
+.q-no:hover{background:rgba(255,143,177,.18);color:var(--cream)}
+
+.yes-response{
+  max-height:0;overflow:hidden;opacity:0;
+  transition:max-height 1s ease,opacity 1s ease,margin 1s ease;
+  font-family:'Playfair Display',serif;font-style:italic;
+  font-size:1.15rem;color:var(--rose-soft);line-height:2.1;
+}
+.yes-response.show{max-height:420px;opacity:1;margin-top:44px}
+
+/* ============================================================
+   9. CONFETTI / HEART BURST
+   ============================================================ */
+.burst{
+  position:fixed;pointer-events:none;z-index:999;
+  font-size:1.4rem;
+  animation:burst 1.7s cubic-bezier(.2,.8,.2,1) forwards;
+}
+@keyframes burst{
+  0%  {transform:translate(-50%,-50%) scale(.3) rotate(0deg);opacity:1}
+  100%{transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) scale(1.3) rotate(var(--r));opacity:0}
+}
+
+/* ============================================================
+   10. MUSIC BUTTON
+   ============================================================ */
+#musicBtn{
+  position:fixed;bottom:24px;right:24px;z-index:90;
+  width:54px;height:54px;border-radius:50%;cursor:pointer;
+  border:1px solid rgba(255,143,177,.4);
+  background:rgba(40,12,32,.8);backdrop-filter:blur(10px);
+  color:var(--rose);font-size:1.2rem;
+  display:grid;place-items:center;transition:.35s;
+  box-shadow:0 8px 30px rgba(0,0,0,.4);
+}
+#musicBtn:hover{background:rgba(255,143,177,.3);transform:scale(1.12);color:#fff}
+#musicBtn.playing{animation:spin 4s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ============================================================
+   11. SCROLL REVEAL
+   ============================================================ */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 1s ease,transform 1s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* ============================================================
+   12. MOBILE
+   ============================================================ */
+@media(max-width:600px){
+  section{padding:80px 18px}
+  .letter{padding:44px 26px}
+  .carousel-stage{height:440px}
+  .carousel{width:200px;height:270px}
+  .reasons{grid-template-columns:1fr}
+  .q-buttons{flex-direction:column;align-items:center}
+  .q-btn{width:100%;max-width:300px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= BACKGROUND LAYERS ================= -->
+<div id="bg">
+  <div class="aurora"></div>
+  <div id="stars"></div>
+  <div id="stars2"></div>
+  <div id="stars3"></div>
+  <div id="heartsBg"></div>
+</div>
+<div id="cursorGlow"></div>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <p class="eyebrow">✦ A little universe, built just for you ✦</p>
+  <h1>Pearl</h1>
+  <p class="sub">
+    14 pictures. 14 reasons. One heart that beats entirely for you.
+    Scroll down — I made you something.
+  </p>
+  <a href="#letter" class="btn">Begin ↓</a>
+  <div class="scroll-hint">↓</div>
+</section>
+
+<!-- ================= TYPEWRITER LOVE LETTER ================= -->
+<section id="letter">
+  <div class="wrap">
+    <div class="center reveal">
+      <h2 class="section-title">A Letter For You</h2>
+      <p class="section-sub">Words I've been trying to say</p>
+    </div>
+    <div class="letter reveal">
+      <div class="letter-body" id="letterBody"></div>
+      <div class="signature" id="signature">Yours,<br>Your Name</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 3D CAROUSEL ================= -->
+<section id="gallery">
+  <div class="wrap">
+    <div class="center reveal">
+      <h2 class="section-title">My Favourite Gallery</h2>
+      <p class="section-sub">The 14 moments you shared — spin the carousel</p>
+    </div>
+    <div class="carousel-stage reveal">
+      <div class="carousel" id="carousel"></div>
+    </div>
+    <div class="carousel-controls">
+      <button class="c-btn" id="cPrev" aria-label="Previous">‹</button>
+      <span class="c-counter" id="cCounter">1 / 14</span>
+      <button class="c-btn" id="cNext" aria-label="Next">›</button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 14 REASONS ================= -->
+<section id="reasons">
+  <div class="wrap">
+    <div class="center reveal">
+      <h2 class="section-title">14 Reasons Why</h2>
+      <p class="section-sub">One for every picture you sent me</p>
+    </div>
+    <div class="reasons" id="reasonsGrid"></div>
+  </div>
+</section>
+
+<!-- ================= SCRATCH CARD ================= -->
+<section id="scratch">
+  <div class="wrap">
+    <div class="center reveal">
+      <h2 class="section-title">Scratch This</h2>
+      <p class="section-sub">Use your finger or mouse to reveal a secret</p>
+    </div>
+    <div class="scratch-wrap reveal" id="scratchWrap">
+      <div class="scratch-reveal">
+        <div class="emoji">💗</div>
+        <h3>You are my favourite notification.</h3>
+        <p>Every time your name pops up on my screen, my whole day changes. That's not an exaggeration — it's just the truth.</p>
+      </div>
+      <canvas id="scratchCanvas"></canvas>
+    </div>
+    <p class="scratch-hint" id="scratchHint">✦ scratch here ✦</p>
+  </div>
+</section>
+
+<!-- ================= FINALE ================= -->
+<section class="finale">
+  <div class="wrap center reveal">
+    <h2>So… what do you say?</h2>
+    <p>
+      I could keep writing, but I'd rather tell you the rest in person.
+      There's just one question left.
+    </p>
+    <div class="q-buttons" id="qButtons">
+      <button class="q-btn q-yes" id="yesBtn">Yes 💗</button>
+      <button class="q-btn q-no"  id="noBtn">Let me think…</button>
+    </div>
+    <div class="yes-response" id="yesResponse">
+      You just made me the happiest person alive. 🌹<br>
+      I promise to keep making you smile — starting today.
+      <br><br>Now come here, I owe you a hug. 💕
+    </div>
+  </div>
+</section>
+
+<!-- ================= MUSIC ================= -->
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+<button id="musicBtn" title="Play music" aria-label="Toggle music">♪</button>
+
+<script>
+/* ============================================================
+   ✏️  EDIT #1 — YOUR 14 PHOTOS
+   Drop your images into the same folder as this file.
+   Rename them photo1.jpeg … photo14.jpeg, or change the paths.
+   ============================================================ */
+const photos = [
+  { src:"photo1.jpeg",  caption:"This one stopped my heart." },
+  { src:"photo2.jpeg",  caption:"You weren't even trying to be cute here." },
+  { src:"photo3.jpeg",  caption:"My favourite smile in the whole world." },
+  { src:"photo4.jpeg",  caption:"I stared at this one way too long." },
+  { src:"photo5.jpeg",  caption:"You look like a painting here." },
+  { src:"photo6.jpeg",  caption:"This is the one I set as my wallpaper." },
+  { src:"photo7.jpeg",  caption:"How is this even real?" },
+  { src:"photo8.jpeg",  caption:"You + this lighting = unfair." },
+  { src:"photo9.jpeg",  caption:"I saved this the second you sent it." },
+  { src:"photo10.jpeg", caption:"You have no idea what you do to me." },
+  { src:"photo11.jpeg", caption:"Soft, warm, and completely you." },
+  { src:"photo12.jpeg", caption:"I keep coming back to this one." },
+  { src:"photo13.jpeg", caption:"Beautiful isn't a strong enough word." },
+  { src:"photo14.jpeg", caption:"And this… this is my favourite of all." }
+];
+
+/* ============================================================
+   ✏️  EDIT #2 — THE LOVE LETTER (typewriter text)
+   Use \n\n for a blank line between paragraphs.
+   ============================================================ */
+const letterText =
+`I don't really know how to say this in a way that sounds as beautiful as you look, so I built a whole website instead.
+
+Every time you sent me a picture, my day got a little brighter — and I kept every single one.
+
+You have this way of making ordinary moments feel like something worth remembering. Your smile, your voice, the way you laugh at your own jokes… I notice all of it.
+
+I notice you.
+
+So here are the 14 pictures you sent me, and 14 reasons why you're my favourite person in the world.`;
+
+/* ============================================================
+   ✏️  EDIT #3 — 14 REASONS WHY YOU LIKE HER
+   ============================================================ */
+const reasons = [
+  "The way your eyes light up when you talk about something you love.",
+  "Your laugh — I'd do anything just to hear it one more time.",
+  "How kind you are, even when nobody's watching.",
+  "The way you say my name.",
+  "You make ordinary days feel like something to look forward to.",
+  "How strong you are, even on the days you don't feel it.",
+  "The little things you remember about me.",
+  "Your smile. It genuinely ruins my concentration.",
+  "How easy it is to talk to you — like we've known each other forever.",
+  "The way you care about the people around you.",
+  "You're beautiful without even trying.",
+  "How you make me want to be a better version of myself.",
+  "Every conversation with you ends too soon.",
+  "Because you're you — and that's more than enough."
+];
+
+/* ============================================================
+   ⚙️  EVERYTHING BELOW IS AUTOMATIC
+   ============================================================ */
+
+/* ---------- Floating hearts ---------- */
+const heartsBg = document.getElementById('heartsBg');
+const emojis = ['💗','💖','🤍','💕','❤️','🌸','✨','💫'];
+for (let i = 0; i < 22; i++){
+  const h = document.createElement('span');
+  h.className = 'heart';
+  h.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+  h.style.left = Math.random() * 100 + 'vw';
+  h.style.fontSize = (11 + Math.random() * 20) + 'px';
+  h.style.animationDuration = (11 + Math.random() * 14) + 's';
+  h.style.animationDelay = (Math.random() * 14) + 's';
+  heartsBg.appendChild(h);
+}
+
+/* ---------- Cursor glow ---------- */
+const glow = document.getElementById('cursorGlow');
+let glowX = window.innerWidth/2, glowY = window.innerHeight/2;
+document.addEventListener('mousemove', e => {
+  glowX = e.clientX; glowY = e.clientY;
+  glow.style.transform = `translate(${glowX}px, ${glowY}px) translate(-50%,-50%)`;
+});
+document.addEventListener('touchmove', e => {
+  const t = e.touches[0];
+  glow.style.transform = `translate(${t.clientX}px, ${t.clientY}px) translate(-50%,-50%)`;
+}, {passive:true});
+
+/* ---------- Typewriter letter ---------- */
+const letterBody = document.getElementById('letterBody');
+const signature  = document.getElementById('signature');
+let typeStarted = false;
+
+function startTypewriter(){
+  if (typeStarted) return;
+  typeStarted = true;
+
+  let i = 0;
+  const cursor = document.createElement('span');
+  cursor.className = 'cursor';
+  letterBody.appendChild(cursor);
+
+  function type(){
+    if (i < letterText.length){
+      cursor.insertAdjacentText('beforebegin', letterText.charAt(i));
+      i++;
+      const delay = letterText.charAt(i-1) === '\n' ? 180 : (18 + Math.random() * 30);
+      setTimeout(type, delay);
+    } else {
+      cursor.remove();
+      signature.classList.add('show');
+    }
+  }
+  type();
+}
+
+/* ---------- Build the 3D carousel ---------- */
+const carousel = document.getElementById('carousel');
+const cCounter = document.getElementById('cCounter');
+const total    = photos.length;
+const angleStep = 360 / total;
+const radius = 340;
+let activeIndex = 0;
+
+photos.forEach((p, i) => {
+  const card = document.createElement('div');
+  card.className = 'card3d';
+  const angle = i * angleStep;
+  card.style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
+  card.innerHTML = `
+    <span class="ph-num">${i+1}</span>
+    <img src="${p.src}" alt="Photo ${i+1}" loading="lazy"
+         onerror="this.style.display='none'">
+    <div class="cap">${p.caption}</div>`;
+  carousel.appendChild(card);
+});
+
+function updateCarousel(){
+  const rot = -activeIndex * angleStep;
+  carousel.style.transform = `rotateY(${rot}deg)`;
+  cCounter.textContent = `${activeIndex + 1} / ${total}`;
+  [...carousel.children].forEach((c, i) => {
+    c.classList.toggle('active', i === activeIndex);
+  });
+}
+function nextCard(){ activeIndex = (activeIndex + 1) % total; updateCarousel(); }
+function prevCard(){ activeIndex = (activeIndex - 1 + total) % total; updateCarousel(); }
+
+document.getElementById('cNext').onclick = nextCard;
+document.getElementById('cPrev').onclick = prevCard;
+
+/* auto-rotate carousel gently */
+let autoRotate = setInterval(nextCard, 4200);
+carousel.addEventListener('mouseenter', () => clearInterval(autoRotate));
+carousel.addEventListener('mouseleave', () => autoRotate = setInterval(nextCard, 4200));
+document.getElementById('gallery').addEventListener('touchstart', () => {
+  clearInterval(autoRotate);
+}, {passive:true});
+document.getElementById('gallery').addEventListener('touchend', () => {
+  autoRotate = setInterval(nextCard, 4200);
+}, {passive:true});
+
+/* drag / swipe to rotate */
+let dragStartX = 0, dragging = false;
+const stage = document.querySelector('.carousel-stage');
+stage.addEventListener('mousedown', e => { dragStartX = e.clientX; dragging = true; });
+window.addEventListener('mouseup', e => {
+  if (!dragging) return;
+  dragging = false;
+  const dx = e.clientX - dragStartX;
+  if (Math.abs(dx) > 40) dx > 0 ? prevCard() : nextCard();
+});
+let touchStartX = 0;
+stage.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive:true});
+stage.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(dx) > 40) dx > 0 ? prevCard() : nextCard();
+}, {passive:true});
+
+updateCarousel();
+
+/* ---------- Build reasons ---------- */
+const rGrid = document.getElementById('reasonsGrid');
+reasons.forEach((r, i) => {
+  const d = document.createElement('div');
+  d.className = 'reason reveal';
+  d.innerHTML = `<span class="num">${i+1}</span><p>${r}</p>`;
+  rGrid.appendChild(d);
+});
+
+/* ---------- Scratch card ---------- */
+const canvas = document.getElementById('scratchCanvas');
+const ctx    = canvas.getContext('2d');
+const wrap   = document.getElementById('scratchWrap');
+const hint   = document.getElementById('scratchHint');
+let scratching = false, revealed = false;
+
+function sizeCanvas(){
+  const rect = wrap.getBoundingClientRect();
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width  = rect.width  * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.scale(dpr, dpr);
+  drawCover(rect.width, rect.height);
+}
+function drawCover(w, h){
+  const grad = ctx.createLinearGradient(0, 0, w, h);
+  grad.addColorStop(0,   '#5c1c45');
+  grad.addColorStop(0.5, '#8a2e5e');
+  grad.addColorStop(1,   '#3a1130');
+  ctx.globalCompositeOperation = 'source-over';
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, w, h);
+
+  /* sparkle texture */
+  for (let i = 0; i < 90; i++){
+    ctx.fillStyle = `rgba(255,255,255,${Math.random()*0.35})`;
+    ctx.beginPath();
+    ctx.arc(Math.random()*w, Math.random()*h, Math.random()*1.6, 0, Math.PI*2);
+    ctx.fill();
+  }
+  /* hint text */
+  ctx.fillStyle = 'rgba(255,255,255,.35)';
+  ctx.font = '500 16px Poppins, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('SCRATCH ME', w/2, h/2);
+}
+function scratchAt(x, y){
+  const rect = canvas.getBoundingClientRect();
+  const px = x - rect.left;
+  const py = y - rect.top;
+  ctx.globalCompositeOperation = 'destination-out';
+  ctx.beginPath();
+  ctx.arc(px, py, 28, 0, Math.PI*2);
+  ctx.fill();
+}
+
+function checkRevealed(){
+  const dpr = window.devicePixelRatio || 1;
+  const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+  let cleared = 0;
+  for (let i = 3; i < data.length; i += 4 * 40){
+    if (data[i] < 40) cleared++;
+  }
+  const ratio = cleared / (data.length / (4*40));
+  if (ratio > 0.55 && !revealed){
+    revealed = true;
+    canvas.classList.add('gone');
+    hint.style.opacity = '0';
+    burstHearts(window.innerWidth/2, window.innerHeight/2, 20);
+  }
+}
+
+canvas.addEventListener('mousedown', e => { scratching = true; scratchAt(e.clientX, e.clientY); });
+canvas.addEventListener('mousemove', e => { if (scratching) scratchAt(e.clientX, e.clientY); });
+window.addEventListener('mouseup', () => {
+  if (scratching){ scratching = false; checkRevealed(); }
+});
+canvas.addEventListener('touchstart', e => {
+  scratching = true;
+  const t = e.touches[0];
+  scratchAt(t.clientX, t.clientY);
+  e.preventDefault();
+}, {passive:false});
+canvas.addEventListener('touchmove', e => {
+  const t = e.touches[0];
+  scratchAt(t.clientX, t.clientY);
+  e.preventDefault();
+}, {passive:false});
+canvas.addEventListener('touchend', () => {
+  scratching = false; checkRevealed();
+});
+
+window.addEventListener('resize', () => {
+  if (!revealed) sizeCanvas();
+});
+/* wait for layout, then init */
+setTimeout(sizeCanvas, 100);
+
+/* ---------- Heart burst helper ---------- */
+function burstHearts(cx, cy, count){
+  for (let i = 0; i < count; i++){
+    const s = document.createElement('span');
+    s.className = 'burst';
+    s.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    s.style.left = cx + 'px';
+    s.style.top  = cy + 'px';
+    s.style.setProperty('--x', (Math.random() - 0.5) * 800 + 'px');
+    s.style.setProperty('--y', (Math.random() - 0.5) * 800 - 100 + 'px');
+    s.style.setProperty('--r', (Math.random() - 0.5) * 720 + 'deg');
+    s.style.fontSize = (14 + Math.random() * 24) + 'px';
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 1800);
+  }
+}
+
+/* ---------- Yes / No buttons ---------- */
+const yesBtn = document.getElementById('yesBtn');
+const noBtn  = document.getElementById('noBtn');
+const yesResponse = document.getElementById('yesResponse');
+const qButtons = document.getElementById('qButtons');
+let noCount = 0;
+const noTexts = [
+  "Let me think…",
+  "Are you sure?",
+  "Really sure?",
+  "Think again 🥺",
+  "Last chance…",
+  "Surely not?",
+  "You might regret this…",
+  "Give it another thought 💭",
+  "Are you absolutely certain?",
+  "This could be a mistake…",
+  "Have a heart 💔",
+  "Don't do this to me 😭",
+  "You're breaking my heart…",
+  "I'm gonna cry…",
+  "Please? 🥺"
+];
+
+yesBtn.addEventListener('click', e => {
+  yesResponse.classList.add('show');
+  qButtons.style.opacity = '.35';
+  qButtons.style.pointerEvents = 'none';
+  yesBtn.textContent = 'She said yes 💕';
+  const rect = yesBtn.getBoundingClientRect();
+  burstHearts(rect.left + rect.width/2, rect.top + rect.height/2, 40);
+  setTimeout(() => burstHearts(window.innerWidth/2, window.innerHeight/2, 30), 400);
+});
+
+noBtn.addEventListener('click', () => {
+  noBtn.textContent = noTexts[Math.min(noCount, noTexts.length - 1)];
+  noCount++;
+  /* shrink the no button a little each time */
+  const scale = Math.max(0.55, 1 - noCount * 0.06);
+  noBtn.style.transform = `scale(${scale})`;
+  /* grow the yes button */
+  const grow = Math.min(1.6, 1 + noCount * 0.08);
+  yesBtn.style.transform = `scale(${grow})`;
+  if (noCount >= noTexts.length){
+    noBtn.textContent = "Okay fine… yes 💗";
+    noBtn.onclick = () => yesBtn.click();
+  }
+});
+
+/* ---------- Music toggle ---------- */
+const music    = document.getElementById('bgMusic');
+const musicBtn = document.getElementById('musicBtn');
+let playing = false;
+
+musicBtn.addEventListener('click', () => {
+  if (!playing){
+    music.play().then(() => {
+      playing = true;
+      musicBtn.classList.add('playing');
+      musicBtn.textContent = '♫';
+    }).catch(() => {
+      musicBtn.textContent = '✕';
+      setTimeout(() => musicBtn.textContent = '♪', 1200);
+    });
+  } else {
+    music.pause();
+    playing = false;
+    musicBtn.classList.remove('playing');
+    musicBtn.textContent = '♪';
+  }
+});
+
+/* ---------- Scroll reveal + trigger typewriter ---------- */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting){
+      e.target.classList.add('visible');
+      if (e.target.closest('#letter')) startTypewriter();
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* also start typing if letter is already in view on load */
+window.addEventListener('load', () => {
+  const letterRect = document.querySelector('.letter').getBoundingClientRect();
+  if (letterRect.top < window.innerHeight * 0.85) startTypewriter();
+});
+
+/* ---------- Keyboard carousel ---------- */
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') nextCard();
+  if (e.key === 'ArrowLeft')  prevCard();
+});
+</script>
+</body>
+</html>
