@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You — My Universe 💫</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="bg">
+  <div class="aurora"></div>
+  <div id="stars"></div>
+  <div id="stars2"></div>
+  <div id="stars3"></div>
+  <div id="heartsBg"></div>
+</div>
+<div id="cursorGlow"></div>
+
+<section class="hero">
+  <p class="eyebrow">✦ A little universe, built just for you ✦</p>
+  <h1>Pearl</h1>
+  <p class="sub">
+    14 pictures. 14 reasons. One heart that beats entirely for you.
+    Scroll down — I made you something.
+  </p>
+  <a href="#letter" class="btn">Begin ↓</a>
+  <div class="scroll-hint">↓</div>
+</section>
+
+<section id="letter">
+  <div class="wrap">
+    <div class="center reveal">
+      <h2 class="section-title">A Letter For You</h2>
+      <p class="section-sub">Words I've been trying to say</p>
+    </div>
+    <div class="letter reveal">
+      <div class="letter-body" id="letterBody"></div>
+      <div class="signature" id="signature">Yours,<br>Your Name</div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap">
+    <div class="center reveal">
+      <h2 class="section-title">My Favourite Gallery</h2>
+      <p class="section-sub">The 14 moments you shared — spin the carousel</p>
+    </div>
+    <div class="carousel-stage reveal">
+      <div class="carousel" id="carousel">
+        <!-- ALL 14 IMAGES ARE NOW LOOKING INSIDE THE "images/" FOLDER -->
+        <div class="card3d"><span class="ph-num">1</span><img src="images/photo1.jpeg" alt="Photo 1"><div class="cap">This one stopped my heart.</div></div>
+        <div class="card3d"><span class="ph-num">2</span><img src="images/photo2.jpeg" alt="Photo 2"><div class="cap">You weren't even trying to be cute here.</div></div>
+        <div class="card3d"><span class="ph-num">3</span><img src="images/photo3.jpeg" alt="Photo 3"><div class="cap">My favourite smile in the whole world.</div></div>
+        <div class="card3d"><span class="ph-num">4</span><img src="images/photo4.jpeg" alt="Photo 4"><div class="cap">I stared at this one way too long.</div></div>
+        <div class="card3d"><span class="ph-num">5</span><img src="images/photo5.jpeg" alt="Photo 5"><div class="cap">You look like a painting here.</div></div>
+        <div class="card3d"><span class="ph-num">6</span><img src="images/photo6.jpeg" alt="Photo 6"><div class="cap">This is the one I set as my wallpaper.</div></div>
+        <div class="card3d"><span class="ph-num">7</span><img src="images/photo7.jpeg" alt="Photo 7"><div class="cap">How is this even real?</div></div>
+        <div class="card3d"><span class="ph-num">8</span><img src="images/photo8.jpeg" alt="Photo 8"><div class="cap">You + this lighting = unfair.</div></div>
+        <div class="card3d"><span class="ph-num">9</span><img src="images/photo9.jpeg" alt="Photo 9"><div class="cap">I saved this the second you sent it.</div></div>
+        <div class="card3d"><span class="ph-num">10</span><img src="images/photo10.jpeg" alt="Photo 10"><div class="cap">You have no idea what you do to me.</div></div>
+        <div class="card3d"><span class="ph-num">11</span><img src="images/photo11.jpeg" alt="Photo 11"><div class="cap">Soft, warm, and completely you.</div></div>
+        <div class="card3d"><span class="ph-num">12</span><img src="images/photo12.jpeg" alt="Photo 12"><div class="cap">I keep coming back to this one.</div></div>
+        <div class="card3d"><span class="ph-num">13</span><img src="images/photo13.jpeg" alt="Photo 13"><div class="cap">Beautiful isn't a strong enough word.</div></div>
+        <div class="card3d"><span class="ph-num">14</span><img src="images/photo14.jpeg" alt="Photo 14"><div class="cap">And this… this is my favourite of all.</div></div>
+      </div>
+    </div>
+    <div class="carousel-controls">
+      <button class="c-btn" id="cPrev" aria-label="Previous">‹</button>
+      <span class="c-counter" id="cCounter">1 / 14</span>
+      <button class="c-btn" id="cNext" aria-label="Next">›</button>
+    </div>
+  </div>
+</section>
+
+<section id="reasons">
+  <div class="wrap">
+    <div class="center reveal">
+      <h2 class="section-title">14 Reasons Why</h2>
+      <p class="section-sub">One for every picture you sent me</p>
+    </div>
+    <div class="reasons" id="reasonsGrid"></div>
+  </div>
+</section>
+
+<section id="scratch">
+  <div class="wrap">
+    <div class="center reveal">
+      <h2 class="section-title">Scratch This</h2>
+      <p class="section-sub">Use your finger or mouse to reveal a secret</p>
+    </div>
+    <div class="scratch-wrap reveal" id="scratchWrap">
+      <div class="scratch-reveal">
+        <div class="emoji">💗</div>
+        <h3>You are my favourite notification.</h3>
+        <p>Every time your name pops up on my screen, my whole day changes. That's not an exaggeration — it's just the truth.</p>
+      </div>
+      <canvas id="scratchCanvas"></canvas>
+    </div>
+    <p class="scratch-hint" id="scratchHint">✦ scratch here ✦</p>
+  </div>
+</section>
+
+<section class="finale">
+  <div class="wrap center reveal">
+    <h2>So… what do you say?</h2>
+    <p>
+      I could keep writing, but I'd rather tell you the rest in person.
+      There's just one question left.
+    </p>
+    <div class="q-buttons" id="qButtons">
+      <button class="q-btn q-yes" id="yesBtn">Yes 💗</button>
+      <button class="q-btn q-no"  id="noBtn">Let me think…</button>
+    </div>
+    <div class="yes-response" id="yesResponse">
+      You just made me the happiest person alive. 🌹<br>
+      I promise to keep making you smile — starting today.
+      <br><br>Now come here, I owe you a hug. 💕
+    </div>
+  </div>
+</section>
+
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+<button id="musicBtn" title="Play music" aria-label="Toggle music">♪</button>
+
+<script src="script.js"></script>
+</body>
+</html>
